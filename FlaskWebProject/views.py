@@ -13,6 +13,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post
 import msal
 import uuid
+import logging
+logging.basicConfig(level = logging.INFO)
 
 imageSourceUrl = 'https://'+ app.config['BLOB_ACCOUNT']  + '.blob.core.windows.net/' + app.config['BLOB_CONTAINER']  + '/'
 
@@ -62,19 +64,19 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        app.logger.info('admin logged in successfully')
+        logging.info('admin logged in successfully')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            logger.warning('Invalid login attempt')
+            logging.warning('Invalid login attempt')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            app.logger.info('admin logged in successfully')
+            logging.info('admin logged in successfully')
             next_page = url_for('home')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
@@ -86,7 +88,7 @@ def authorized():
     if request.args.get('state') != session.get("state"):
         return redirect(url_for("home"))  # No-OP. Goes back to Index page
     if "error" in request.args:  # Authentication/Authorization failure
-        app.logger.error('Invalid login attempt')
+        logging.error('Invalid login attempt')
         return render_template("auth_error.html", result=request.args)
     if request.args.get('code'):
         cache = _load_cache()
@@ -107,7 +109,7 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
-        app.logger.info('admin logged in successfully')
+        logging.info('admin logged in successfully')
     return redirect(url_for('home'))
 
 @app.route('/logout')
