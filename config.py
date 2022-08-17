@@ -5,14 +5,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'udaproject1storage'
-    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'cUDItgT2Jn/c4z7rKKE4n+5+vICV2ogxqhvToQg31g9wlQWaYjZkP9Lu5Ms/uNzwEPRjtiaHcTra+AStpxF6UA=='
-    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
+    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'articlecmstorageaccount'
+    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'RjG/O8Ssu71c9QBXxCCLynasFh7IQR4je4RqA4v34M8lP+lpuyS0yrwrUnqDZ17QNd9th4ICDKWY+AStCUj1qg=='
+    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'articlecmscontainer'
 
-    SQL_SERVER = os.environ.get('SQL_SERVER') or 'udaproject1server.database.windows.net'
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'udaproject1db'
-    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'udacityadmin'
-    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'p@ssword1234'
+    SQL_SERVER = os.environ.get('SQL_SERVER') or 'article-cms-server.database.windows.net'
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'ArticleCMS'
+    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'azureuser'
+    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Dung9x04'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
