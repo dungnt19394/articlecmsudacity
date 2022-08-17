@@ -9,8 +9,8 @@ class Config(object):
     BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'RjG/O8Ssu71c9QBXxCCLynasFh7IQR4je4RqA4v34M8lP+lpuyS0yrwrUnqDZ17QNd9th4ICDKWY+AStCUj1qg=='
     BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'articlecmscontainer'
 
-    SQL_SERVER = os.environ.get('SQL_SERVER') or 'article-cms-server.database.windows.net'
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'ArticleCMS'
+    SQL_SERVER = os.environ.get('SQL_SERVER') or 'articlecmsserver.database.windows.net'
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'article-cms-server'
     SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'azureuser'
     SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Dung9x04'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
