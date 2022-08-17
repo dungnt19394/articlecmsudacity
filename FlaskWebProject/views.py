@@ -62,7 +62,7 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        logger.warning('admin logged in successfully')
+        logger.info('admin logged in successfully')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -74,7 +74,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            logger.warning('admin logged in successfully')
+            logger.info('admin logged in successfully')
             next_page = url_for('home')
         return redirect(next_page)
     session["state"] = str(uuid.uuid4())
@@ -107,7 +107,7 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
-        logger.warning('admin logged in successfully')
+        logger.info('admin logged in successfully')
     return redirect(url_for('home'))
 
 @app.route('/logout')
